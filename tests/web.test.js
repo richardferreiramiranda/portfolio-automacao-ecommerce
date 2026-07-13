@@ -2,11 +2,11 @@ const assert = require("node:assert/strict");
 const test = require("node:test");
 const { calcularSimulacao, parseNumero } = require("../assets/app.js");
 
-test("aceita vÃ­rgula como separador decimal", () => {
+test("aceita vírgula como separador decimal", () => {
   assert.equal(parseNumero("12,50"), 12.5);
 });
 
-test("calcula lucro e margem do cenÃ¡rio de exemplo", () => {
+test("calcula lucro e margem do cenário de exemplo", () => {
   const resultado = calcularSimulacao({
     precoVenda: 150,
     custoProduto: 70,
