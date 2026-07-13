@@ -26,8 +26,8 @@
     const percentuais = [valores.taxaPercentual, valores.impostosPercentual];
     const monetarios = [valores.precoVenda, valores.custoProduto, valores.tarifaFixa, valores.frete, valores.publicidade];
 
-    if (valores.precoVenda <= 0) throw new Error("Informe um preÃ§o de venda maior que zero.");
-    if (monetarios.some((valor) => valor < 0)) throw new Error("Os valores em reais nÃ£o podem ser negativos.");
+    if (valores.precoVenda <= 0) throw new Error("Informe um preço de venda maior que zero.");
+    if (monetarios.some((valor) => valor < 0)) throw new Error("Os valores em reais não podem ser negativos.");
     if (percentuais.some((valor) => valor < 0 || valor > 100)) throw new Error("Os percentuais devem estar entre 0 e 100.");
 
     const taxaMarketplace = arredondar(valores.precoVenda * valores.taxaPercentual / 100);
@@ -87,12 +87,12 @@
       document.querySelector("#lucro-resultado").textContent = formatarMoeda(resultado.lucro);
       document.querySelector("#margem-resultado").textContent = formatarPercentual(resultado.margem);
       document.querySelector("#venda-resultado").textContent = formatarMoeda(resultado.precoVenda);
-      document.querySelector("#taxas-resultado").textContent = "âˆ’ " + formatarMoeda(resultado.taxasEImpostos);
-      document.querySelector("#custos-resultado").textContent = "âˆ’ " + formatarMoeda(resultado.custosOperacionais);
+      document.querySelector("#taxas-resultado").textContent = "− " + formatarMoeda(resultado.taxasEImpostos);
+      document.querySelector("#custos-resultado").textContent = "− " + formatarMoeda(resultado.custosOperacionais);
       document.querySelector("#total-resultado").textContent = formatarMoeda(resultado.custoTotal);
       document.querySelector("#mensagem-resultado").textContent = positivo
-        ? "Resultado apÃ³s todos os custos informados"
-        : "Seus custos ultrapassam o preÃ§o de venda";
+        ? "Resultado após todos os custos informados"
+        : "Seus custos ultrapassam o preço de venda";
 
       status.textContent = positivo ? "Venda lucrativa" : "Margem negativa";
       status.className = "status " + (positivo ? "positive" : "negative");
@@ -131,9 +131,9 @@
       const link = atualizarUrl(ultimaSimulacao);
       try {
         await navigator.clipboard.writeText(link);
-        feedback.textContent = "Link copiado. Agora Ã© sÃ³ compartilhar!";
+        feedback.textContent = "Link copiado. Agora é só compartilhar!";
       } catch (_) {
-        feedback.textContent = "Copie o endereÃ§o exibido na barra do navegador.";
+        feedback.textContent = "Copie o endereço exibido na barra do navegador.";
       }
     });
 
