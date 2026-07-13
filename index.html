@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Simule custos, lucro e margem de vendas em marketplaces com taxas configurÃ¡veis.">
+    <meta name="theme-color" content="#102a43">
+    <title>Calculadora de Lucro para E-commerce</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="InÃ­cio da Calculadora E-commerce">
+        <span class="brand-mark" aria-hidden="true">%</span>
+        <span>
+          <strong>Margem Certa</strong>
+          <small>Ferramentas para e-commerce</small>
+        </span>
+      </a>
+      <a class="github-link" href="https://github.com/richardferreiramiranda/portfolio-automacao-ecommerce" target="_blank" rel="noreferrer">Ver cÃ³digo</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow">Simulador gratuito</div>
+        <h1>Descubra seu lucro <span>antes de anunciar.</span></h1>
+        <p>Informe seus custos e taxas para estimar o lucro e a margem de uma venda. Os valores ficam apenas no seu navegador.</p>
+        <div class="trust-row" aria-label="CaracterÃ­sticas">
+          <span>Sem cadastro</span>
+          <span>Taxas configurÃ¡veis</span>
+          <span>Resultado instantÃ¢neo</span>
+        </div>
+      </section>
+
+      <section class="calculator-shell" aria-labelledby="titulo-calculadora">
+        <form id="calculator-form" class="calculator-form">
+          <div class="section-heading">
+            <div>
+              <span class="step">01</span>
+              <h2 id="titulo-calculadora">Dados da venda</h2>
+            </div>
+            <button class="text-button" id="reset-button" type="reset">Limpar valores</button>
+          </div>
+
+          <div class="field-grid">
+            <label class="field featured-field">
+              <span>PreÃ§o de venda</span>
+              <span class="money-input"><b>R$</b><input id="preco-venda" name="precoVenda" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="150,00" required></span>
+            </label>
+            <label class="field">
+              <span>Custo do produto</span>
+              <span class="money-input"><b>R$</b><input id="custo-produto" name="custoProduto" type="number" min="0" step="0.01" inputmode="decimal" placeholder="70,00" required></span>
+            </label>
+            <label class="field">
+              <span>Taxa do marketplace</span>
+              <span class="suffix-input"><input id="taxa-percentual" name="taxaPercentual" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="16"><b>%</b></span>
+            </label>
+            <label class="field">
+              <span>Tarifa fixa</span>
+              <span class="money-input"><b>R$</b><input id="tarifa-fixa" name="tarifaFixa" type="number" min="0" step="0.01" inputmode="decimal" placeholder="6,00"></span>
+            </label>
+            <label class="field">
+              <span>Frete pago pelo vendedor</span>
+              <span class="money-input"><b>R$</b><input id="frete" name="frete" type="number" min="0" step="0.01" inputmode="decimal" placeholder="12,00"></span>
+            </label>
+            <label class="field">
+              <span>Publicidade por venda</span>
+              <span class="money-input"><b>R$</b><input id="publicidade" name="publicidade" type="number" min="0" step="0.01" inputmode="decimal" placeholder="5,00"></span>
+            </label>
+            <label class="field">
+              <span>Impostos sobre a venda</span>
+              <span class="suffix-input"><input id="impostos-percentual" name="impostosPercentual" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="4"><b>%</b></span>
+            </label>
+          </div>
+
+          <p id="form-error" class="form-error" role="alert" hidden></p>
+          <button class="primary-button" type="submit">Calcular meu lucro <span aria-hidden="true">â†’</span></button>
+        </form>
+
+        <aside class="result-panel" aria-labelledby="titulo-resultado">
+          <div class="section-heading result-heading">
+            <div>
+              <span class="step light">02</span>
+              <h2 id="titulo-resultado">Resultado estimado</h2>
+            </div>
+            <span id="result-status" class="status neutral">Aguardando dados</span>
+          </div>
+
+          <div id="empty-result" class="empty-result">
+            <span class="empty-symbol" aria-hidden="true">R$</span>
+            <p>Preencha os dados da venda para visualizar seu resultado.</p>
+          </div>
+
+          <div id="result-content" class="result-content" aria-live="polite" hidden>
+            <div class="profit-card">
+              <span>Lucro estimado</span>
+              <strong id="lucro-resultado">R$ 0,00</strong>
+              <small id="mensagem-resultado">Resultado apÃ³s todos os custos informados</small>
+            </div>
+
+            <div class="margin-block">
+              <div>
+                <span>Margem sobre a venda</span>
+                <strong id="margem-resultado">0,00%</strong>
+              </div>
+              <div class="meter" aria-hidden="true"><span id="margin-meter"></span></div>
+            </div>
+
+            <dl class="breakdown">
+              <div><dt>PreÃ§o de venda</dt><dd id="venda-resultado">R$ 0,00</dd></div>
+              <div><dt>Taxas e impostos</dt><dd id="taxas-resultado">âˆ’ R$ 0,00</dd></div>
+              <div><dt>Custos operacionais</dt><dd id="custos-resultado">âˆ’ R$ 0,00</dd></div>
+              <div class="total-line"><dt>Custo total</dt><dd id="total-resultado">R$ 0,00</dd></div>
+            </dl>
+
+            <button id="share-button" class="share-button" type="button">Copiar link desta simulaÃ§Ã£o</button>
+            <p id="share-feedback" class="share-feedback" aria-live="polite"></p>
+          </div>
+        </aside>
+      </section>
+
+      <section class="notice">
+        <strong>Importante</strong>
+        <p>Este simulador Ã© independente e usa somente os valores informados por vocÃª. Confirme taxas e regras atuais na sua conta e na documentaÃ§Ã£o oficial antes de definir preÃ§os.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>Projeto de portfÃ³lio de Richard Ferreira Miranda</span>
+      <span>Feito para decisÃµes mais claras no e-commerce.</span>
+    </footer>
+
+    <script src="assets/app.js"></script>
+  </body>
+</html>
+
