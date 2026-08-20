@@ -23,6 +23,10 @@ A calculadora também funciona diretamente no navegador, sem instalação e sem 
 
 Os valores são processados somente no navegador. O botão de compartilhamento inclui a simulação no endereço da página para que outra pessoa possa abrir o mesmo cenário.
 
+## Protótipos de sites (portfólio visual)
+
+Protótipos diários de landing pages para diferentes categorias de negócio, usados como amostras de design/portfólio. Veja o progresso e a lista em [prototypes/README.md](prototypes/README.md).
+
 ## Próximos projetos
 
 - Monitor de estoque baixo
